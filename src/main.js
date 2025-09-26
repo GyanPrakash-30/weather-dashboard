@@ -133,3 +133,27 @@ async function fetchForecast(city) {
     toggleVisibility({ loading: false });
   }
 }
+
+// 🌍 Auto-detect location on load
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(async (position) => {
+    try {
+      const { latitude, longitude } = position.coords;
+      const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+      const response = await fetch(url);
+      const data = await response.json();
+
+      if (response.ok) {
+        // Call your existing functions with detected city
+        fetchWeather(data.name);
+        fetchForecast(data.name);
+      } else {
+        console.warn("Geo API error:", data.message);
+      }
+    } catch (err) {
+      console.error("Geolocation fetch failed:", err);
+    }
+  }, (error) => {
+    console.warn("Geolocation permission denied or error:", error);
+  });
+}
