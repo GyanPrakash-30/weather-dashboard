@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Weather Dashboard</title>
+  <link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🌤 Weather Dashboard</h1>
+
+    <!-- Search Bar -->
+    <div class="search-box">
+      <input type="text" id="city-input" placeholder="Enter city name...">
+      <button id="search-btn">🔍</button>
+    </div>
+
+    <!-- Loader -->
+    <div class="loader hidden" id="loader"></div>
+
+    <!-- Current Weather -->
+    <div class="weather-card hidden" id="weather">
+      <h2 id="city">--</h2>
+      <p id="description">--</p>
+      <h1 id="temp">--°C</h1>
+      <p>💧 Humidity: <span id="humidity">--</span>%</p>
+      <p>💨 Wind: <span id="wind">--</span> km/h</p>
+    </div>
+
+    <!-- 5-Day Forecast -->
+    <div class="forecast hidden" id="forecast">
+      <h3>5-Day Forecast</h3>
+      <div class="forecast-cards" id="forecast-cards"></div>
+    </div>
+
+    <!-- Error Message -->
+    <p class="error hidden" id="error">⚠ City not found. Try again.</p>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
